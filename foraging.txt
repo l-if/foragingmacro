@@ -1,0 +1,242 @@
+//VARIABLES
+#blockx1=-123
+#blocky1=75
+#blockz1=-36
+
+#blockx2=-121
+#blocky2=74
+#blockz2=-28
+
+#blockx3=-132
+#blocky3=74
+#blockz3=-25
+
+#blockx4=-142
+#blocky4=73
+#blockz4=-20
+
+#blockx5=-150
+#blocky5=73
+#blockz5=-20
+
+#blockx6=-152
+#blocky6=74
+#blockz6=-42
+
+#blockx7=-152
+#blocky7=78
+#blockz7=-42
+
+#blockx8=-134
+#blocky8=73
+#blockz8=-42
+
+#playerx1=-125
+#playery1=74
+#playerz1=-36
+
+#playerx2=-122
+#playery2=74
+#playerz2=-28
+
+#playerx3=-132
+#playery3=73
+#playerz3=-28
+
+#playerx4=-143
+#playery4=73
+#playerz4=-23
+
+#playerx5=-150
+#playery5=73
+#playerz5=-21
+
+#playerx5b=-160
+#playery5b=73
+#playerz5b=-31
+
+#playerx5c=-160
+#playery5c=74
+#playerz5c=-37
+
+#playerx6=-154
+#playery6=74
+#playerz6=-41
+
+#playerx7=-154
+#playery7=74
+#playerz7=-41
+
+#playerx7b=-137
+#playery7b=73
+#playerz7b=-48
+
+#playerx7c=-153
+#playery7c=74
+#playerz7c=-47
+
+#playerx8=-135
+#playery8=73
+#playerz8=-39
+
+@forage=1
+//MAIN PROGRAM
+FUNCTION goto(#f1x,#f1y,#f1z)
+    CALCYAWTO(%#f1x%,%#f1y%,%#f1z%,#f1yaw,#f1dist,#f1pitch)
+    IF(%#f1yaw%<180)
+        #f1yaw=#f1yaw+180
+    ELSE
+        #f1yaw=#f1yaw-180
+    ENDIF
+    LOOKS(%#f1yaw%,0,0.2)
+    KEYDOWN("forward")
+    DO()
+        CALCYAWTO(%#f1x%,%#f1y%,%#f1z%,#f1yaw,#f1dist,#f1pitch)
+        IF(%#f1yaw%<180)
+            #f1yaw=#f1yaw+180
+        ELSE
+            #f1yaw=#f1yaw-180
+        ENDIF
+        LOOKS(%#f1yaw%,0)
+    UNTIL(#f1x==XPOS)
+    KEYUP("forward")
+ENDFUNCTION
+
+FUNCTION lookat(#f2x,#f2y,#f2z)
+    CALCYAWTO(%#f2x%,%#f2y%,%#f2z%,#f2yaw,#f2dist,#f2pitch)
+    IF(%#f2yaw%<180)
+        #f2yaw=#f2yaw+180
+    ELSE
+        #f2yaw=#f2yaw-180
+    ENDIF
+    LOOKS(%#f2yaw%,%#f2pitch%,0.3)
+ENDFUNCTION
+
+DO()
+    goto(%#playerx1%,%#playery1%,%#playerz1%)
+    WAIT(1t)
+    GETID(%#blockx1%,%#blocky1%,%#blockz1%,&id)
+    LOG(%&id%)
+    IF(%&id%=="log")
+        WAIT(5t)
+        lookat(%#blockx1%,%#blocky1%,%#blockz1%)
+        FOR(#i,1,10)
+            KEY(attack)
+        NEXT
+        WAIT(5t)
+    ENDIF
+
+    goto(%#playerx2%,%#playery2%,%#playerz2%)
+    WAIT(1t)
+    GETID(%#blockx2%,%#blocky2%,%#blockz2%,&id)
+    LOG(%&id%)
+    IF(%&id%=="log")
+        WAIT(5t)
+        lookat(%#blockx2%,%#blocky2%,%#blockz2%)
+        FOR(#i,1,10)
+            KEY(attack)
+        NEXT
+        WAIT(5t)
+    ENDIF
+
+
+    goto(%#playerx3%,%#playery3%,%#playerz3%)
+    WAIT(1t)
+    GETID(%#blockx3%,%#blocky3%,%#blockz3%,&id)
+    LOG(%&id%)
+    IF(&id=="log")
+        WAIT(5t)
+        lookat(%#blockx3%,%#blocky3%,%#blockz3%)
+        FOR(#i,1,10)
+            KEY(attack)
+        NEXT
+        WAIT(5t)
+    ENDIF
+
+    goto(%#playerx4%,%#playery4%,%#playerz4%)
+    WAIT(1t)
+    GETID(%#blockx4%,%#blocky4%,%#blockz4%,&id)
+    LOG(%&id%)
+    IF(&id=="log")
+        WAIT(5t)
+        lookat(%#blockx4%,%#blocky4%,%#blockz4%)
+        FOR(#i,1,10)
+            KEY(attack)
+        NEXT
+        WAIT(5t)
+    ENDIF
+
+    goto(%#playerx5%,%#playery5%,%#playerz5%)
+    WAIT(1t)
+    GETID(%#blockx5%,%#blocky5%,%#blockz5%,&id)
+    LOG(%&id%)
+    IF(&id=="log")
+        WAIT(5t)
+        lookat(%#blockx5%,%#blocky5%,%#blockz5%)
+        FOR(#i,1,10)
+            KEY(attack)
+        NEXT
+        WAIT(5t)
+    ENDIF
+
+    goto(%#playerx5b%,%#playery5b%,%#playerz5b%)
+    WAIT(1t)
+
+    goto(%#playerx5c%,%#playery5c%,%#playerz5c%)
+    WAIT(1t)
+
+    LOOKS(0,0)
+    WAIT(5t)
+    KEYDOWN("forward")
+    WAIT(3t)
+    KEYDOWN("jump")
+    WAIT(2t)
+    KEYUP("jump")
+    WAIT(5t)
+    KEYUP("forward")
+
+    goto(%#playerx7%,%#playery7%,%#playerz7%)
+    WAIT(1t)
+    GETID(%#blockx6%,%#blocky6%,%#blockz6%,&id)
+    LOG(%&id%)
+    IF(&id=="log")
+        WAIT(5t)
+        lookat(%#blockx6%,%#blocky6%,%#blockz6%)
+        FOR(#i,1,10)
+            KEY(attack)
+        NEXT
+        WAIT(15t)
+    ENDIF
+
+    goto(%#playerx7%,%#playery7%,%#playerz7%)
+    WAIT(1t)
+    GETID(%#blockx7%,%#blocky7%,%#blockz7%,&id)
+    LOG(%&id%)
+    IF(&id=="log")
+        WAIT(5t)
+        lookat(%#blockx7%,%#blocky7%,%#blockz7%)
+        FOR(#i,1,10)
+            KEY(attack)
+        NEXT
+        WAIT(5t)
+    ENDIF
+
+    goto(%#playerx7c%,%#playery7c%,%#playerz7c%)
+    WAIT(1t)
+
+    goto(%#playerx7b%,%#playery7b%,%#playerz7b%)
+    WAIT(1t)
+
+    goto(%#playerx8%,%#playery8%,%#playerz8%)
+    WAIT(1t)
+    GETID(%#blockx8%,%#blocky8%,%#blockz8%,&id)
+    LOG(%&id%)
+    IF(&id=="log")
+        WAIT(5t)
+        lookat(%#blockx8%,%#blocky8%,%#blockz8%)
+        FOR(#i,1,10)
+            KEY(attack)
+        NEXT
+        WAIT(5t)
+    ENDIF
+UNTIL(@forage==0)
